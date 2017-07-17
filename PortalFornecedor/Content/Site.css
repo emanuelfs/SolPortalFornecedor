@@ -1,24 +1,237 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.menu-usuario {
+    width: 1em !important;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.logo-lg {
+    font-size: 2em;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.ui-widget-header {
+    color: #fff;
+    background-color: #3276b1;
+    border: 0px;
+    border-radius: 0px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.ui-widget-content {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.logo-marca {
+    width: 32px;
+    height: 32px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.menuAcoesResponsivo {
+    position: absolute;
+    right: 0;
+    left: auto;
+    z-index: 900;
+    border-radius: 5px;
+}
+
+    .menuAcoesResponsivo ul {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+.has-feedback {
+    margin-bottom: 21px;
+}
+
+.has-error {
+    margin-bottom: 5px !important;
+}
+
+.help-block {
+    margin: 0px !important;
+}
+
+.form-group.has-success label {
+    color: rgb(51, 51, 51);
+}
+
+.form-group.has-error label {
+    color: rgb(51, 51, 51);
+}
+
+.btn label {
+    cursor: pointer;
+}
+
+.box {
+    border: 1px solid #d2d6de;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+}
+
+.panel-heading {
+    border-radius: 0px !important;
+}
+
+.panel-title {
+    font-weight: bold;
+}
+
+.btn-success:focus {
+    background-color: #00a65a;
+    border-color: #008d4c;
+}
+
+.form-control {
+    border: 1px solid #cccccc;
+}
+
+    .form-control:focus {
+        border-color: #66afe9;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+
+.selectize-dropdown-content {
+    /*padding:1px !important;*/
+}
+
+.selectize-dropdown {
+    margin: 0px !important;
+}
+
+.selectize-control {
+    margin-bottom: -5px;
+}
+
+    .selectize-control.single .selectize-input:after {
+        margin-right: -10px;
+    }
+
+.selectize-input.disabled, .selectize-input.disabled * {
+    cursor: not-allowed !important;
+    background-color: #eee !important;
+    opacity: 1 !important;
+}
+
+div.dataTables_wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.table {
+    width: 100% !important;
+}
+
+.dataTables_info {
+    white-space: normal !important;
+}
+
+/*//////////////////////////////////////////////////////////*/
+
+.form-group.has-error .form-control {
+    border-color: rgb(204, 204, 204) !important;
+}
+
+.has-error .selectize-input {
+    border-color: rgb(204, 204, 204) !important;
+}
+
+/*.form-group.has-error > label {
+    color: #666 !important;
+}*/
+
+.has-error .form-control-feedback {
+    display: none !important;
+}
+
+.form-group.has-success .form-control {
+    border-color: rgb(204, 204, 204) !important;
+}
+
+.has-success .selectize-input {
+    border-color: rgb(204, 204, 204) !important;
+}
+
+.form-group.has-success > label {
+    /*color: #666 !important;*/
+}
+
+.has-success .form-control-feedback {
+    display: none !important;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+}
+
+.main-sidebar {
+    z-index: 1 !important;
+}
+
+.table-condensed {
+    width: 310px !important;
+}
+
+.navbar-brand {
+    padding-top: 15px;
+    margin-right: 15px !important;
+}
+
+.content-wrapper {
+    margin-left: 0px !important;
+}
+
+.main-header > .navbar {
+    margin-left: 0px !important;
+}
+
+@media (max-width: 767px) {
+    .skin-blue-light .main-header .navbar .dropdown-menu li a {
+        color: #fff !important;
+    }
+    .dropdown-toggle {
+        background-color: transparent !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar > .container .navbar-brand {
+        margin-right: 15px !important;
+    }
+}
+
+.container {
+    width: 100% !important;
+}
+
+.dvMensagem {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 14px !important;
+}
+
+.dvMensagem .row {
+    margin: 0px !important;
+}
+
+.dvMensagem .col-md-2 {
+    margin: 0px !important;
+    padding: 0px !important;
+    text-align: center !important;
+}
+
+.dvMensagem .col-md-10 {
+    margin: 0px !important; 
+    padding: 0px !important; 
+    text-align: left !important;
+}
+
+.dvMensagem .disabled {
+    opacity: 1 !important;
+}
+
+.dvMensagem p {
+    margin: 0px !important;
+    overflow-y: scroll;
+    max-height: 200px;
 }

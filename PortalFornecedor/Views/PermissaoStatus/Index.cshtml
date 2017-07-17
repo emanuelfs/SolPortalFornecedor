@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Permissões dos Status";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="dvTabelaPrincipal" class="box">
+            <div class="box-body">
+                <div style="margin: 0 0 1em 0;overflow: hidden; text-align:left;">
+                    <button id="btnExportarExcel" class="btn btn-sm btn-primary" type="button">
+                        <i class="fa fa-file-excel-o visible-xs"></i>
+                        <i class="fa fa-file-excel-o hidden-xs"></i>
+                        <label class="hidden-xs" style="margin:0px;">&nbsp;&nbsp;Exportar para Excel</label>
+                    </button>
+                </div>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <div class="row" style="margin-bottom: 0px !important;">
+                            <div class="form-group col-lg-6">
+                                <label>Grupo:</label>
+                                <select id="nomeGrupo" class="form-control"></select>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label>Formulário:</label>
+                                <select id="idFormulario" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <label id="lblNenhumaPermissao" style="margin-bottom: 0px;">Nenhum registro foi encontrado</label>
+                        <div id="dvSelPermissoes" style="display: none;">
+                            <select id="selPermissoes" multiple="multiple" size="10"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script src="@Url.Content("~/Scripts/custom/permissao-status.js")"></script>
+}

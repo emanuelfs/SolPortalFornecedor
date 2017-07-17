@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Busca Avançada";
+}
+
+@section head{
+    <link href="/Content/custom/busca-avancada-generica.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="dvTabelaPrincipal" class="box">
+            <div class="box-body">
+                <div class="box box-default">
+                    <div class="box-body">
+                        <div class="row" style="margin-bottom: 0px !important;">
+                            <div class="form-group col-lg-4">
+                                <label>Data Inicial:</label>
+                                <input id="dataInicialFiltro" readonly="readonly" class="form-control data-filtro" placeholder="Informe a data">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Data Final:</label>
+                                <input id="dataFinalFiltro" readonly="readonly" class="form-control data-filtro" placeholder="Informe a data">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>ID.:</label>
+                                <input id="idBuscaPreenchimento" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 0px !important;">
+                            <div class="form-group col-lg-12">
+                                <label>Formulário(s):</label>
+                                <label id="listaFormularios" class="form-control" style="font-weight: normal; height: auto;">Nenhum Formulário foi Informado</label>
+                            </div>
+                        </div>
+                        <div style="margin: 0 0 1em 0;overflow: hidden; text-align:right;">
+                            <button id="btnEscolherForms" class="btn btn-sm btn-primary" style="margin-right:5px;" type="button">
+                                <label style="margin:0px;">Escolher o(s) Formulário(s)</label>
+                            </button>
+                            <button id="btnFiltrar" class="btn btn-sm btn-primary" style="margin-right:5px;" type="button">
+                                <label style="margin:0px;">Filtrar</label>
+                            </button>
+                            <button id="btnLimparFiltro" class="btn btn-sm btn-primary" type="button">
+                                <label style="margin:0px;">Limpar</label>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="dvDadosTabelaPrincipal" class="box box-default" style="display: none;">
+                    <div class="box-body">
+                        <div style="margin: 0 0 1em 0;overflow: hidden; text-align:left;">
+                            <button id="btnExportarExcel" class="btn btn-sm btn-primary" type="button">
+                                <i class="fa fa-file-excel-o visible-xs"></i>
+                                <i class="fa fa-file-excel-o hidden-xs"></i>
+                                <label class="hidden-xs" style="margin:0px;">&nbsp;&nbsp;Exportar para Excel</label>
+                            </button>
+                        </div>
+                        <div id="dvPaiTabela" class="dataTable_wrapper">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="dvFormCadastro" class="box" style="display:none;">
+            <div class="box-body">
+                <form id="formCadastro" action="#" class="row">
+                    <div id="dvComponentesDinamicos"></div>
+                    <div class="form-group col-lg-12" style="text-align:right;">
+                        <button id="btnCancelar" class="btn btn-sm btn-primary" type="button">
+                            <i class="glyphicon glyphicon-remove visible-xs"></i>
+                            <label class="hidden-xs" style="margin:0px;">Voltar</label>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dvFormulariosFiltro" title="Formulário(s)" class="dvMensagem" style="display: none;">
+    <div class="row">
+        <div class="col-md-12">
+            <select id="selFormularios" multiple="multiple" size="10"></select>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script src="@Url.Content("~/Scripts/custom/busca-avancada-generica.js")"></script>
+}

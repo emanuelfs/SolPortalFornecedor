@@ -1,31 +1,111 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Lançamento";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@section head{
+    <link href="/Content/custom/home.css" rel="stylesheet" />
+}
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-lg-12">
+        <div id="dvTabelaFormularios" class="box">
+            <div id="dvPrincipal" class="box-body box-body-formulario">
+
+            </div>
+        </div>
+        <div id="dvTabelaPrincipal" class="box" style="display:none;">
+            <div class="box-body">
+                <div class="box box-default">
+                    <div class="box-body">
+                        <div class="row" style="margin-bottom: 0px !important;">
+                            <div class="form-group col-lg-3">
+                                <label>Data Inicial:</label>
+                                <input id="dataInicialFiltro" readonly="readonly" class="form-control data-filtro" placeholder="Informe a data">
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <label>Data Final:</label>
+                                <input id="dataFinalFiltro" readonly="readonly" class="form-control data-filtro" placeholder="Informe a data">
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <label>Status:</label>
+                                <select id="statusFiltro" class="form-control">
+                                    <option value="T">Todos</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <label>Exibir:</label>
+                                <select id="tipoLancamentosFiltro" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div id="dvCamposDinamicosFiltro" class="row" style="margin-bottom: 0px !important;">
+                            <div class="form-group col-lg-3">
+                                <label>ID.:</label>
+                                <input id="idBuscaPreenchimento" class="form-control">
+                            </div>
+                        </div>
+                        <div style="margin: 0 0 1em 0;overflow: hidden; text-align:right;">
+                            <button id="btnFiltrar" class="btn btn-sm btn-primary" style="margin-right:5px;" type="button">
+                                <i class="glyphicon glyphicon-plus visible-xs"></i>
+                                <label class="hidden-xs" style="margin:0px;">Filtrar</label>
+                            </button>
+                            <button id="btnLimparFiltro" class="btn btn-sm btn-primary" type="button">
+                                <i class="glyphicon glyphicon-plus visible-xs"></i>
+                                <label class="hidden-xs" style="margin:0px;">Limpar</label>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <div style="margin: 0 0 1em 0;overflow: hidden; text-align:left;">
+                            <button id="btnNovo" class="btn btn-sm btn-success" style="margin-right: 10px;" type="button">
+                                <i class="glyphicon glyphicon-plus visible-xs"></i>
+                                <label class="hidden-xs" style="margin:0px;">Novo item</label>
+                            </button>
+                            <button id="btnExportarExcel" class="btn btn-sm btn-primary" type="button">
+                                <i class="fa fa-file-excel-o visible-xs"></i>
+                                <i class="fa fa-file-excel-o hidden-xs"></i>
+                                <label class="hidden-xs" style="margin:0px;">&nbsp;&nbsp;Exportar para Excel</label>
+                            </button>
+                        </div>
+                        <div id="dvPaiTabela" class="dataTable_wrapper">
+
+                        </div>
+                        <div class="form-group col-lg-12" style="text-align:right;">
+                            <button id="btnVoltar" class="btn btn-sm btn-primary" type="button">
+                                <i class="glyphicon glyphicon-remove visible-xs"></i>
+                                <label class="hidden-xs" style="margin:0px;">Voltar</label>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="dvFormCadastro" class="box" style="display:none;">
+            <div class="box-body">
+                <form id="formCadastro" action="#" class="row">
+                    <div id="dvComponentesDinamicos"></div>
+                    <div class="form-group col-lg-12" style="text-align:right;">
+                        <button id="btnSalvar" class="btn btn-sm btn-success" style="margin-right:5px;" type="button">
+                            <i class="glyphicon glyphicon-floppy-disk visible-xs"></i>
+                            <label class="hidden-xs" style="margin:0px;">Salvar</label>
+                        </button>
+                        <button id="btnSalvarContinuar" class="btn btn-sm btn-success" style="margin-right:5px;" type="button">
+                            <i class="glyphicon glyphicon-floppy-disk visible-xs"></i>
+                            <label class="hidden-xs" style="margin:0px;">Salvar e Continuar</label>
+                        </button>
+                        <button id="btnCancelar" class="btn btn-sm btn-danger" type="button">
+                            <i class="glyphicon glyphicon-remove visible-xs"></i>
+                            <label class="hidden-xs" style="margin:0px;">Cancelar</label>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
+@section script{
+    <script src="@Url.Content("~/Scripts/custom/home.js")"></script>
+}

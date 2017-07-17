@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Erro";
+}
+@section script{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            mostrarMsgErro('Falha ao tentar abrir o arquivo, favor tente novamente');
+            $('#btnVoltar').click(function () {
+                history.back(-1);
+            });
+        });
+    </script>
+}
+<div class="form-group col-lg-12" style="text-align:right;">
+    <button id="btnVoltar" class="btn btn-sm btn-primary" type="button">
+        <i class="glyphicon glyphicon-remove visible-xs"></i>
+        <label class="hidden-xs" style="margin:0px;">Voltar</label>
+    </button>
+</div>

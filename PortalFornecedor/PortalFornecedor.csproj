@@ -19,8 +19,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.87.1\lib\net40\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +87,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -148,37 +157,181 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArquivoTramitacaoController.cs" />
+    <Compile Include="Controllers\BuscaAvancadaController.cs" />
+    <Compile Include="Controllers\ComponentesController.cs" />
+    <Compile Include="Controllers\FluxoStatusController.cs" />
+    <Compile Include="Controllers\FormulariosController.cs" />
+    <Compile Include="Controllers\FuncionalidadeController.cs" />
+    <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItensListasController.cs" />
+    <Compile Include="Controllers\MascaraComponenteController.cs" />
+    <Compile Include="Controllers\ModuloController.cs" />
+    <Compile Include="Controllers\ParametroController.cs" />
+    <Compile Include="Controllers\PermissaoCompController.cs" />
+    <Compile Include="Controllers\PermissaoExibicaoController.cs" />
+    <Compile Include="Controllers\PermissaoFuncController.cs" />
+    <Compile Include="Controllers\PermissaoStatusController.cs" />
+    <Compile Include="Controllers\PreenchimentosController.cs" />
+    <Compile Include="Controllers\RelatoriosController.cs" />
+    <Compile Include="Controllers\SegurancaController.cs" />
+    <Compile Include="Controllers\StatusFormularioController.cs" />
+    <Compile Include="Controllers\TiposComponentesController.cs" />
+    <Compile Include="Controllers\TiposListasController.cs" />
+    <Compile Include="Controllers\TiposValoresComponentesController.cs" />
+    <Compile Include="Controllers\TramitacoesController.cs" />
+    <Compile Include="Controllers\ValidadorComponenteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAL\ArquivoTramitacaoDAL.cs" />
+    <Compile Include="Models\DAL\ComponenteDAL.cs" />
+    <Compile Include="Models\DAL\FluxoStatusDAL.cs" />
+    <Compile Include="Models\DAL\FormularioDAL.cs" />
+    <Compile Include="Models\DAL\FuncionalidadeDAL.cs" />
+    <Compile Include="Models\DAL\GrupoDAL.cs" />
+    <Compile Include="Models\DAL\ItemListaDAL.cs" />
+    <Compile Include="Models\DAL\MascaraComponenteDAL.cs" />
+    <Compile Include="Models\DAL\ModuloDAL.cs" />
+    <Compile Include="Models\DAL\ParametroDAL.cs" />
+    <Compile Include="Models\DAL\PermissaoCompDAL.cs" />
+    <Compile Include="Models\DAL\PermissaoExibicaoDAL.cs" />
+    <Compile Include="Models\DAL\PermissaoFuncDAL.cs" />
+    <Compile Include="Models\DAL\PermissaoStatusDAL.cs" />
+    <Compile Include="Models\DAL\PreenchimentoDAL.cs" />
+    <Compile Include="Models\DAL\StatusFormularioDAL.cs" />
+    <Compile Include="Models\DAL\TipoComponenteDAL.cs" />
+    <Compile Include="Models\DAL\TipoListaDAL.cs" />
+    <Compile Include="Models\DAL\TipoValorComponenteDAL.cs" />
+    <Compile Include="Models\DAL\TramitacaoDAL.cs" />
+    <Compile Include="Models\DAL\Util.cs" />
+    <Compile Include="Models\DAL\ValidadorComponenteDAL.cs" />
+    <Compile Include="Models\TO\ArquivoTramitacao.cs" />
+    <Compile Include="Models\TO\Componente.cs" />
+    <Compile Include="Models\TO\ComponentePreenchimento.cs" />
+    <Compile Include="Models\TO\Excel\ComponenteExcel.cs" />
+    <Compile Include="Models\TO\Excel\FluxoStatusExcel.cs" />
+    <Compile Include="Models\TO\Excel\FormularioExcel.cs" />
+    <Compile Include="Models\TO\Excel\FuncionalidadeExcel.cs" />
+    <Compile Include="Models\TO\Excel\ItemListaExcel.cs" />
+    <Compile Include="Models\TO\Excel\ParametroExcel.cs" />
+    <Compile Include="Models\TO\Excel\PermissaoCompExcel.cs" />
+    <Compile Include="Models\TO\Excel\PermissaoExibicaoExcel.cs" />
+    <Compile Include="Models\TO\Excel\PermissaoFuncExcel.cs" />
+    <Compile Include="Models\TO\Excel\PermissaoStatusExcel.cs" />
+    <Compile Include="Models\TO\Excel\StatusFormularioExcel.cs" />
+    <Compile Include="Models\TO\Excel\TipoListaExcel.cs" />
+    <Compile Include="Models\TO\FluxoStatus.cs" />
+    <Compile Include="Models\TO\Formulario.cs" />
+    <Compile Include="Models\TO\Funcionalidade.cs" />
+    <Compile Include="Models\TO\Grupo.cs" />
+    <Compile Include="Models\TO\ItemLista.cs" />
+    <Compile Include="Models\TO\MascaraComponente.cs" />
+    <Compile Include="Models\TO\Modulo.cs" />
+    <Compile Include="Models\TO\Parametro.cs" />
+    <Compile Include="Models\TO\PermissaoComp.cs" />
+    <Compile Include="Models\TO\PermissaoExibicao.cs" />
+    <Compile Include="Models\TO\PermissaoFunc.cs" />
+    <Compile Include="Models\TO\PermissaoStatus.cs" />
+    <Compile Include="Models\TO\Preenchimento.cs" />
+    <Compile Include="Models\TO\StatusFormulario.cs" />
+    <Compile Include="Models\TO\TipoComponente.cs" />
+    <Compile Include="Models\TO\TipoLista.cs" />
+    <Compile Include="Models\TO\TipoValorComponente.cs" />
+    <Compile Include="Models\TO\Tramitacao.cs" />
+    <Compile Include="Models\TO\Usuario.cs" />
+    <Compile Include="Models\TO\ValidadorComponente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\admin-lte\css\AdminLTE.min.css" />
+    <Content Include="Content\admin-lte\css\skin-blue-light.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-duallistbox.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrapValidator.min.css" />
+    <Content Include="Content\bootstrap\css\dataTables.bootstrap.css" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\custom\busca-avancada-generica.css" />
+    <Content Include="Content\custom\busca-avancada.css" />
+    <Content Include="Content\custom\fluxos-formularios.css" />
+    <Content Include="Content\custom\home.css" />
+    <Content Include="Content\custom\preenchimento.css" />
+    <Content Include="Content\datepicker\css\datepicker.min.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\jquery\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\jquery\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\jquery\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\jquery\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\jquery\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\jquery\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery\jquery-ui.css" />
+    <Content Include="Content\jsPlumb\jsPlumb.css" />
+    <Content Include="Content\selectize\selectize.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\ai.0.15.0-build58334.js" />
-    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <Content Include="App_Code\MenuHelper.cshtml" />
+    <Content Include="App_Code\MenuUsuarioHelper.cshtml" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Resources\loader.gif" />
+    <Content Include="Resources\logo.png" />
+    <Content Include="Scripts\admin-lte\app.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap-duallistbox.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrapValidator.min.js" />
+    <Content Include="Scripts\bootstrap\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\custom\busca-avancada-generica.js" />
+    <Content Include="Scripts\custom\busca-avancada.js" />
+    <Content Include="Scripts\custom\componentes.js" />
+    <Content Include="Scripts\custom\fluxos-formularios.js" />
+    <Content Include="Scripts\custom\fluxos-status.js" />
+    <Content Include="Scripts\custom\formularios.js" />
+    <Content Include="Scripts\custom\funcionalidade.js" />
+    <Content Include="Scripts\custom\grupo.js" />
+    <Content Include="Scripts\custom\home.js" />
+    <Content Include="Scripts\custom\itens-listas.js" />
+    <Content Include="Scripts\custom\modulo.js" />
+    <Content Include="Scripts\custom\parametro.js" />
+    <Content Include="Scripts\custom\permissao-comp.js" />
+    <Content Include="Scripts\custom\permissao-exibicao.js" />
+    <Content Include="Scripts\custom\permissao-func.js" />
+    <Content Include="Scripts\custom\permissao-status.js" />
+    <Content Include="Scripts\custom\preenchimento.js" />
+    <Content Include="Scripts\custom\status-formularios.js" />
+    <Content Include="Scripts\custom\tipos-listas.js" />
+    <Content Include="Scripts\custom\util-componentes.js" />
+    <Content Include="Scripts\custom\validador-componentes.js" />
+    <Content Include="Scripts\datepicker\datepicker.min.js" />
+    <Content Include="Scripts\datepicker\datepicker.pt-BR.js" />
+    <Content Include="Scripts\jquery\jQuery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery\jquery-ui.js" />
+    <Content Include="Scripts\jquery\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery\jquery.maskMoney.min.js" />
+    <Content Include="Scripts\jquery\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\jsPlumb\jsPlumbToolkit-1.0.20.js" />
+    <Content Include="Scripts\jsPlumb\syntax-highlighter.js" />
+    <Content Include="Scripts\mask\jquery.mask.min.js" />
+    <Content Include="Scripts\metisMenu\metisMenu.min.js" />
+    <Content Include="Scripts\responsive\dataTables.responsive.js" />
+    <Content Include="Scripts\selectize\selectize.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -191,21 +344,41 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\MascaraComponente\" />
+    <Folder Include="Views\TiposComponentes\" />
+    <Folder Include="Views\TiposValoresComponentes\" />
+    <Folder Include="Views\Tramitacoes\" />
+    <Folder Include="Views\ValidadorComponente\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\ArquivoTramitacao\Erro.cshtml" />
+    <Content Include="Views\BuscaAvancada\Generica.cshtml" />
+    <Content Include="Views\BuscaAvancada\Index.cshtml" />
+    <Content Include="Views\Componentes\Index.cshtml" />
+    <Content Include="Views\FluxoStatus\Index.cshtml" />
+    <Content Include="Views\Formularios\Index.cshtml" />
+    <Content Include="Views\Funcionalidade\Index.cshtml" />
+    <Content Include="Views\Grupo\Index.cshtml" />
+    <Content Include="Views\ItensListas\Index.cshtml" />
+    <Content Include="Views\Modulo\Index.cshtml" />
+    <Content Include="Views\Parametro\Index.cshtml" />
+    <Content Include="Views\PermissaoComp\Index.cshtml" />
+    <Content Include="Views\PermissaoExibicao\Index.cshtml" />
+    <Content Include="Views\PermissaoFunc\Index.cshtml" />
+    <Content Include="Views\PermissaoStatus\Index.cshtml" />
+    <Content Include="Views\Preenchimentos\Index.cshtml" />
+    <Content Include="Views\Relatorios\FluxoFormulario.cshtml" />
+    <Content Include="Views\Seguranca\AcessoNegado.cshtml" />
+    <Content Include="Views\Seguranca\BemVindo.cshtml" />
+    <Content Include="Views\Seguranca\PerfilUsuario.cshtml" />
+    <Content Include="Views\StatusFormulario\Index.cshtml" />
+    <Content Include="Views\TiposListas\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

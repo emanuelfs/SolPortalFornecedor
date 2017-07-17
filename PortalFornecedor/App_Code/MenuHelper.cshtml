@@ -1,0 +1,241 @@
+﻿@helper MenuPrincipal()
+{
+CencosudCSCWEBMVC.Models.TO.Usuario usuarioLogado
+    = CencosudCSCWEBMVC.Controllers.SegurancaController.UsuarioLogado;
+if (usuarioLogado != null)
+{
+        <script type="text/javascript">
+            function isNullOrEmpty(texto) {
+                return undefined == texto
+                || null == texto
+                || '' == texto.toString().trim();
+            }
+            function removerMenuSemPermissao(menu) {
+                if (!isNullOrEmpty(menu) && isNullOrEmpty(menu.innerHTML)) {
+                    try {
+                        menu.parentElement.remove();
+                    } catch (ex) {
+                        menu.parentElement.parentElement.removeChild(menu.parentElement);
+                    }
+                }
+            }
+        </script>
+    if (usuarioLogado.PossuiPermissao("Home/Index"))
+    {
+            <li>
+                <a href="~/Home">
+                    <i class='fa fa-file-text-o'></i>
+                    <span>Liberação</span>
+                </a>
+            </li>
+    }
+    if (usuarioLogado.PossuiPermissao("Preenchimentos/Index"))
+    {
+            <li>
+                <a href="~/Preenchimentos">
+                    <i class='fa fa-check-square-o'></i>
+                    <span>Atendimento</span>
+                </a>
+            </li>
+    }
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class='fa fa-search'></i>
+                Busca Avançada
+                <span class="caret"></span>
+            </a>
+            <ul id="ulMenuBuscasAvancadas" class="dropdown-menu" role="menu">
+                @if (usuarioLogado.PossuiPermissao("BuscaAvancada/Generica"))
+                {
+                    <li>
+                        <a href="~/BuscaAvancada/Generica">
+                            <span>Genérica</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("BuscaAvancada/Index"))
+                {
+                    <li>
+                        <a href="~/BuscaAvancada">
+                            <span>Específica</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+        <script type="text/javascript">
+            var ulMenuBuscasAvancadas = document.getElementById('ulMenuBuscasAvancadas');
+            removerMenuSemPermissao(ulMenuBuscasAvancadas);
+        </script>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class='fa fa-clipboard'></i>
+                Relatórios
+                <span class="caret"></span>
+            </a>
+            <ul id="ulMenuRelatorios" class="dropdown-menu" role="menu">
+                @if (usuarioLogado.PossuiPermissao("Relatorios/FluxoFormulario"))
+                {
+                    <li>
+                        <a href="~/Relatorios/FluxoFormulario">
+                            <span>Fluxos dos Formulários</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+        <script type="text/javascript">
+            var ulMenuRelatorios = document.getElementById('ulMenuRelatorios');
+            removerMenuSemPermissao(ulMenuRelatorios);
+        </script>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class='fa fa-key'></i>
+                Segurança
+                <span class="caret"></span>
+            </a>
+            <ul id="ulMenuSeguranca" class="dropdown-menu" role="menu">
+                @if (usuarioLogado.PossuiPermissao("Grupo/Index"))
+                {
+                    <li>
+                        <a href="~/Grupo">
+                            <span>Grupos</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("Modulo/Index"))
+                {
+                    <li>
+                        <a href="~/Modulo">
+                            <span>Módulos</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("Funcionalidade/Index"))
+                {
+                    <li>
+                        <a href="~/Funcionalidade">
+                            <span>Funcionalidades</span>
+                        </a>
+                    </li>
+                }
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Permissões
+                        <span class="caret"></span>
+                    </a>
+                    <ul id="ulMenuPermissoes" class="dropdown-menu" role="menu">
+                        @if (usuarioLogado.PossuiPermissao("PermissaoFunc/Index"))
+                        {
+                            <li>
+                                <a href="~/PermissaoFunc">
+                                    <span>Funcionalidades</span>
+                                </a>
+                            </li>
+                        }
+                        @if (usuarioLogado.PossuiPermissao("PermissaoStatus/Index"))
+                        {
+                            <li>
+                                <a href="~/PermissaoStatus">
+                                    <span>Status dos Formulários</span>
+                                </a>
+                            </li>
+                        }
+                        @if (usuarioLogado.PossuiPermissao("PermissaoComp/Index"))
+                        {
+                            <li>
+                                <a href="~/PermissaoComp">
+                                    <span>Componentes</span>
+                                </a>
+                            </li>
+                        }
+                        @if (usuarioLogado.PossuiPermissao("PermissaoExibicao/Index"))
+                        {
+                            <li>
+                                <a href="~/PermissaoExibicao">
+                                    <span>Exibições</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <script type="text/javascript">
+            var ulMenuPermissoes = document.getElementById('ulMenuPermissoes');
+            removerMenuSemPermissao(ulMenuPermissoes);
+
+            var ulMenuSeguranca = document.getElementById('ulMenuSeguranca');
+            removerMenuSemPermissao(ulMenuSeguranca);
+        </script>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class='fa fa-cog'></i>
+                Configurações
+                <span class="caret"></span>
+            </a>
+            <ul id="ulMenuConfiguracoes" class="dropdown-menu" role="menu">
+                @if (usuarioLogado.PossuiPermissao("Formularios/Index"))
+                {
+                    <li>
+                        <a href="~/Formularios">
+                            <span>Formulários</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("Componentes/Index"))
+                {
+                    <li>
+                        <a href="~/Componentes">
+                            <span>Componentes</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("StatusFormulario/Index"))
+                {
+                    <li>
+                        <a href="~/StatusFormulario">
+                            <span>Status dos Formulários</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("FluxoStatus/Index"))
+                {
+                    <li>
+                        <a href="~/FluxoStatus">
+                            <span>Fluxos dos Formulários</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("TiposListas/Index"))
+                {
+                    <li>
+                        <a href="~/TiposListas">
+                            <span>Listas</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("ItensListas/Index"))
+                {
+                    <li>
+                        <a href="~/ItensListas">
+                            <span>Itens das Listas</span>
+                        </a>
+                    </li>
+                }
+                @if (usuarioLogado.PossuiPermissao("Parametro/Index"))
+                {
+                    <li>
+                        <a href="~/Parametro">
+                            <span>Parâmetros</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </li>
+        <script type="text/javascript">
+            var ulMenuConfiguracoes = document.getElementById('ulMenuConfiguracoes');
+            removerMenuSemPermissao(ulMenuConfiguracoes);
+        </script>
+}
+}

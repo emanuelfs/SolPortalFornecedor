@@ -1,0 +1,16 @@
+﻿.btn-formulario {
+    width: 100%;
+}
+
+.box-body-formulario {
+    min-height: 36.5em;
+}
+
+.row {
+    margin-bottom: 15px;
+}
+
+.data-filtro {
+    cursor: pointer !important;
+    background-color: #fff !important;
+}
